@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>MATH101 Study Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">M</div><div><strong>MATH101</strong><small>BACKLOG TRACKER</small></div></div>
+      <nav>
+        <button class="nav-item active" data-page="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-item" data-page="planner"><span>☷</span> 30-day planner</button>
+        <button class="nav-item" data-page="records"><span>◷</span> Study records</button>
+        <button class="nav-item" data-page="formulas"><span>∑</span> Formula sheet</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="course-pill"><span class="dot"></span><div><strong>FY BCA · Semester I</strong><small>Mathematical & Statistical Techniques</small></div></div>
+        <p>Small steps. Daily practice.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><div class="eyebrow">YOUR PERSONAL STUDY SPACE</div><h1 id="page-title">Dashboard</h1></div>
+        <div class="top-actions">
+          <span class="today" id="today-label"></span>
+          <button class="icon-button" id="export-btn" title="Export backup">⇩</button>
+        </div>
+      </header>
+
+      <section id="dashboard-page" class="page">
+        <div class="welcome-card">
+          <div class="welcome-copy">
+            <div class="eyebrow light">MATH101 · BACKLOG PREPARATION</div>
+            <h2>Progress over perfection.</h2>
+            <p>Your 30-day plan, practice records and weak topics — all in one place.</p>
+            <button class="primary-button" id="continue-btn">Continue studying <span>→</span></button>
+          </div>
+          <div class="welcome-orbit"><div class="orbit-inner">∑<small>30 DAYS</small></div></div>
+        </div>
+
+        <div class="stat-grid">
+          <article class="stat-card"><div class="stat-top"><span>Plan completed</span><span class="stat-icon purple">✓</span></div><div class="stat-value" id="stat-progress">0%</div><div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div><small id="progress-caption">0 of 30 days completed</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Study time</span><span class="stat-icon blue">◷</span></div><div class="stat-value"><span id="stat-hours">0</span><small class="unit"> hrs</small></div><small>Total time you've logged</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Practice accuracy</span><span class="stat-icon green">↗</span></div><div class="stat-value" id="stat-score">—</div><small id="score-caption">Log a practice score to start</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Study streak</span><span class="stat-icon orange">✦</span></div><div class="stat-value"><span id="stat-streak">0</span><small class="unit"> days</small></div><small>Consecutive days studied</small></article>
+        </div>
+
+        <div class="content-grid">
+          <section class="panel">
+            <div class="panel-heading"><div><div class="eyebrow">UP NEXT</div><h3 id="next-title">Day 1 · Arithmetic foundations</h3></div><span class="tag">90 MIN</span></div>
+            <p id="next-desc" class="muted">Revise fractions, signs, squares and multiplication.</p>
+            <div class="task-box"><strong>Today's practice</strong><p id="next-question"></p></div>
+            <button class="primary-button" id="open-next">Open study task <span>→</span></button>
+          </section>
+          <section class="panel">
+            <div class="panel-heading"><div><div class="eyebrow">SYLLABUS OVERVIEW</div><h3>Three units</h3></div></div>
+            <div id="unit-progress" class="unit-progress"></div>
+            <p class="muted small">Mark a day complete when you can solve its questions without help.</p>
+          </section>
+        </div>
+        <section class="panel recent-panel">
+          <div class="panel-heading"><div><div class="eyebrow">YOUR JOURNAL</div><h3>Recent study records</h3></div><button class="text-button" data-goto="records">View all →</button></div>
+          <div id="recent-records" class="record-list"></div>
+        </section>
+      </section>
+
+      <section id="planner-page" class="page hidden">
+        <div class="section-intro"><div><div class="eyebrow">YOUR 30-DAY ROADMAP</div><h2>One day at a time.</h2><p class="muted">Each day includes a topic, a clear task and practice to complete.</p></div><div class="mini-progress"><strong id="planner-progress">0/30</strong><small>days done</small></div></div>
+        <div class="filter-row">
+          <button class="filter active" data-filter="all">All days</button><button class="filter" data-filter="pending">Pending</button><button class="filter" data-filter="progress">In progress</button><button class="filter" data-filter="done">Completed</button>
+        </div>
+        <div id="planner-list" class="planner-list"></div>
+      </section>
+
+      <section id="records-page" class="page hidden">
+        <div class="section-intro"><div><div class="eyebrow">TRACK YOUR WORK</div><h2>Study records</h2><p class="muted">Record what you studied, how long you spent and how it went.</p></div><button class="primary-button" id="add-record-btn">+ Add record</button></div>
+        <div class="record-summary"><div><small>Sessions logged</small><strong id="record-count">0</strong></div><div><small>Total minutes</small><strong id="record-minutes">0</strong></div><div><small>Average score</small><strong id="record-average">—</strong></div></div>
+        <div id="all-records" class="record-list full-record-list"></div>
+        <div class="panel backup-panel"><div><h3>Keep your data safe</h3><p class="muted small">Export a backup regularly. Import it later to restore your records in this browser.</p></div><div class="backup-actions"><button class="secondary-button" id="export-btn-2">Export backup</button><label class="secondary-button file-label">Import backup<input type="file" id="import-file" accept=".json,application/json" hidden></label></div></div>
+      </section>
+
+      <section id="formulas-page" class="page hidden">
+        <div class="section-intro"><div><div class="eyebrow">QUICK REVISION</div><h2>Formula sheet</h2><p class="muted">Use this as a quick revision aid; follow your teacher's conventions in exams.</p></div></div>
+        <div class="formula-grid" id="formula-grid"></div>
+      </section>
+      <footer>Built for your MATH101 backlog journey <span>·</span> Your progress is saved in this browser</footer>
+    </main>
+  </div>
+
+  <dialog id="task-dialog" class="modal">
+    <form method="dialog" class="modal-top"><div><div class="eyebrow" id="dialog-day">DAY 1</div><h2 id="dialog-title">Arithmetic foundations</h2></div><button class="close-button" aria-label="Close">×</button></form>
+    <div class="modal-body">
+      <p id="dialog-desc" class="muted"></p>
+      <div class="task-box"><strong>Practice question</strong><p id="dialog-question"></p></div>
+      <label class="field-label">Status<select id="task-status"><option value="pending">Pending</option><option value="progress">In progress</option><option value="done">Completed</option></select></label>
+      <label class="field-label">Minutes studied<input id="task-minutes" type="number" min="0" max="1440" placeholder="e.g. 90"></label>
+      <label class="field-label">Practice score (%)<input id="task-score" type="number" min="0" max="100" placeholder="Optional"></label>
+      <label class="field-label">Notes / mistakes<textarea id="task-notes" rows="3" placeholder="What did you learn? Which questions were difficult?"></textarea></label>
+      <div class="modal-actions"><button type="button" class="secondary-button" id="save-task">Save study record</button><button type="button" class="primary-button" id="complete-task">Mark completed ✓</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="record-dialog" class="modal">
+    <form method="dialog" class="modal-top"><div><div class="eyebrow">STUDY JOURNAL</div><h2>Add a study record</h2></div><button class="close-button" aria-label="Close">×</button></form>
+    <div class="modal-body">
+      <label class="field-label">Study date<input type="date" id="record-date" required></label>
+      <label class="field-label">Topic<input type="text" id="record-topic" placeholder="e.g. 3×3 determinants" required></label>
+      <label class="field-label">Unit<select id="record-unit"><option>Unit 1 · Linear Algebra</option><option>Unit 2 · Statistics</option><option>Unit 3 · Correlation & Regression</option><option>Revision / Mock test</option></select></label>
+      <label class="field-label">Minutes studied<input type="number" id="record-time" min="0" max="1440" value="30"></label>
+      <label class="field-label">Practice score (%)<input type="number" id="record-score" min="0" max="100" placeholder="Optional"></label>
+      <label class="field-label">Notes<textarea id="record-notes" rows="3" placeholder="What went well? What needs revision?"></textarea></label>
+      <div class="modal-actions"><button type="button" class="primary-button" id="save-record">Save record</button></div>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
